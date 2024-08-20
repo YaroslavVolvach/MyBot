@@ -1,5 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+  Typography,
+  Container,
+} from '@mui/material';
 import './css/UserList.css';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -47,47 +59,53 @@ const UserList = () => {
   };
 
   return (
-    <div className="user-list-container">
-      <h2>User List</h2>
-      <table className="user-list-table">
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Name</th>
-            <th>ID</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user._id}>
-              <td>{user.username || 'No username'}</td>
-              <td>{user.name || 'No name'}</td>
-              <td>{user.telegramId}</td>
-              <td>{user.isBanned ? 'Banned' : 'Not Banned'}</td>
-              <td>
-                {user.isBanned ? (
-                  <button
-                    onClick={() => handleUnbanUser(user.telegramId)}
-                    className="unban-button"
-                  >
-                    Unban
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => handleBanUser(user.telegramId)}
-                    className="ban-button"
-                  >
-                    Ban
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <Container>
+      <Typography variant="h4" gutterBottom>
+        User List
+      </Typography>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>User</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>ID</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Action</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {users.map((user) => (
+              <TableRow key={user._id}>
+                <TableCell>{user.username || 'No username'}</TableCell>
+                <TableCell>{user.name || 'No name'}</TableCell>
+                <TableCell>{user.telegramId}</TableCell>
+                <TableCell>{user.isBanned ? 'Banned' : 'Not Banned'}</TableCell>
+                <TableCell>
+                  {user.isBanned ? (
+                    <Button
+                      variant="contained"
+                      color="success"
+                      onClick={() => handleUnbanUser(user.telegramId)}
+                    >
+                      Unban
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => handleBanUser(user.telegramId)}
+                    >
+                      Ban
+                    </Button>
+                  )}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Container>
   );
 };
 

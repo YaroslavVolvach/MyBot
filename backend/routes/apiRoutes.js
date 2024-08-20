@@ -7,6 +7,18 @@ const bot = require('../bot');
 
 router.post('/auth/login', authController.login);
 
+router.post('/users', async (req, res) => {
+  const { telegramId, username } = req.body;
+
+  try {
+    const newUser = new User({ telegramId, username });
+    await newUser.save();
+    res.status(201).json({ message: 'User added successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error adding user', error });
+  }
+});
+
 router.get('/users', async (req, res) => {
   try {
     const users = await User.find({});

@@ -12,6 +12,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import NotifyForm from './components/NotifyForm';
 import UserList from './components/UserList';
+import AddUserForm from './components/AddUserForm';
 import './index.css';
 
 function App() {
@@ -54,6 +55,10 @@ function App() {
         <Route
           path="/users"
           element={isAuthenticated ? <UserList /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/add-user"
+          element={isAuthenticated ? <AddUserForm /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>
