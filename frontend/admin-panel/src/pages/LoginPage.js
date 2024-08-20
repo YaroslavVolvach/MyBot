@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './css/LoginPage.css';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const LoginPage = ({ setIsAuthenticated }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +15,7 @@ const LoginPage = ({ setIsAuthenticated }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:3001/api/auth/login',
+        `${BASE_URL}http://localhost:3001/api/auth/login`,
         {
           username,
           password,

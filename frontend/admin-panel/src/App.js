@@ -11,6 +11,7 @@ import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import NotifyForm from './components/NotifyForm';
+import UserList from './components/UserList';
 import './index.css';
 
 function App() {
@@ -49,6 +50,10 @@ function App() {
         <Route
           path="/notifications"
           element={isAuthenticated ? <NotifyForm /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/users"
+          element={isAuthenticated ? <UserList /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>

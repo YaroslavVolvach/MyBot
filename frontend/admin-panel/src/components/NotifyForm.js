@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './css/NotifyForm.css';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const NotifyForm = () => {
   const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/api/notify-all', { message });
+      await axios.post(`${BASE_URL}/api/notify-all`, { message });
       alert('Notification sent successfully!');
       setMessage('');
     } catch (error) {

@@ -1,0 +1,64 @@
+/* UserList.css */
+
+.user-list-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.user-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.user-list-table th,
+.user-list-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-list-table th {
+  background-color: #4caf50;
+  color: white;
+}
+
+.user-list-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.ban-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.ban-button:hover {
+  background-color: #e53935;
+}
+
+.ban-button.disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.unban-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.unban-button:hover {
+  background-color: #45a049;
+}

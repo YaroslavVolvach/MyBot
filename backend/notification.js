@@ -9,7 +9,8 @@ async function sendNotificationToAllUsers(bot, message) {
         if (
           user.role !== 'admin' &&
           user.telegramId &&
-          !isNaN(user.telegramId)
+          !isNaN(user.telegramId) &&
+          !user.isBanned
         ) {
           await bot.telegram.sendMessage(user.telegramId, message);
         } else {
