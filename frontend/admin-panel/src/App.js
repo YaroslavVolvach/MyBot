@@ -1,3 +1,5 @@
+// App.js
+
 import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
@@ -8,6 +10,7 @@ import {
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
+import NotifyForm from './components/NotifyForm';
 import './index.css';
 
 function App() {
@@ -20,20 +23,32 @@ function App() {
     }
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsAuthenticated(false);
+  };
+
   return (
     <Router>
-      <Header
-        isAuthenticated={isAuthenticated}
-        setIsAuthenticated={setIsAuthenticated}
-      />
+      <Header isAuthenticated={isAuthenticated} onLogout={handleLogout} />
       <Routes>
         <Route
           path="/login"
-          element={<LoginPage setIsAuthenticated={setIsAuthenticated} />}
+          element={
+            isAuthenticated ? (
+              <Navigate to="/" />
+            ) : (
+              <LoginPage setIsAuthenticated={setIsAuthenticated} />
+            )
+          }
         />
         <Route
           path="/"
           element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/notifications"
+          element={isAuthenticated ? <NotifyForm /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>

@@ -1,24 +1,23 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './css/Header.css';
 
-const Header = ({ isAuthenticated, setIsAuthenticated }) => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsAuthenticated(false);
-    navigate('/login');
-  };
-
+const Header = ({ isAuthenticated, onLogout }) => {
   return (
-    <header>
+    <header className="header">
       <h1>Admin Panel</h1>
-      {isAuthenticated && (
-        <button onClick={handleLogout} className="logout-button">
-          Logout
-        </button>
-      )}
+      {isAuthenticated ? (
+        <>
+          <nav className="navbar">
+            <Link to="/notifications">Notifications</Link>
+            <Link to="/users">User List</Link>
+            <Link to="/create-user">Create User</Link>
+          </nav>
+          <button className="logout-button" onClick={onLogout}>
+            Logout
+          </button>
+        </>
+      ) : null}
     </header>
   );
 };
