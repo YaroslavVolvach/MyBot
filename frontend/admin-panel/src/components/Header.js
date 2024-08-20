@@ -1,15 +1,25 @@
 import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
+import './css/Header.css';
 
-const Header = () => {
+const Header = ({ isAuthenticated, setIsAuthenticated }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsAuthenticated(false);
+    navigate('/login');
+  };
+
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6">Admin Panel</Typography>
-      </Toolbar>
-    </AppBar>
+    <header>
+      <h1>Admin Panel</h1>
+      {isAuthenticated && (
+        <button onClick={handleLogout} className="logout-button">
+          Logout
+        </button>
+      )}
+    </header>
   );
 };
 
