@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-const Header = ({ isAuthenticated }) => {
+const Header = ({ isAuthenticated, onLogout }) => {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -24,7 +24,7 @@ const Header = ({ isAuthenticated }) => {
             <Button color="inherit" component={Link} to="/users">
               User List
             </Button>
-            <Button color="inherit" component={Link} to="/logout">
+            <Button color="inherit" onClick={onLogout}>
               Logout
             </Button>
           </Box>
