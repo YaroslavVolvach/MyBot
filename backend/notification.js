@@ -19,7 +19,12 @@ async function sendNotificationToAllUsers(bot, message) {
           );
         }
       } catch (error) {
-        if (error.response && error.response.error_code === 400) {
+        if (error.response && error.response.error_code === 403) {
+          console.error(
+            `User with ID ${user.telegramId} has blocked the bot. Skipping this user.`
+          );
+          // Просто игнорируем этого пользователя и продолжаем отправку остальным
+        } else if (error.response && error.response.error_code === 400) {
           console.error(
             `Failed to send message to ${user.telegramId}: ${error.response.description}`
           );
